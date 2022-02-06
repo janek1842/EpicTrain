@@ -1,0 +1,21 @@
+{% extends "views/base.html" %}
+{% block content %}
+
+     <div class="container">
+        <center>
+        <h1>{{ service['name'] }}</h1>
+        <br>
+        <h3>Ocena: {{ total_rate }} / 5.0 </h3>
+        <br>
+        <h2>Cena: {{ service['price'] }} PLN</h2><br>
+        <p>{{ service['description'] }}</p>
+        <br>
+        <img src="{{ STATIC_PREFIX }}images/services/{{service['photo']}}"/>
+        </center>
+    </div>
+    <hr>
+    {% with page="services" %}
+        {% include "views/comments.html" %}
+    {% endwith %}
+
+{% endblock content %}

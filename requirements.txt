@@ -1,0 +1,5 @@
+Flask~=2.0.2
+WTForms~=3.0.1
+Werkzeug~=2.0.2
+mysqlclient~=2.1.0
+Django~=4.0.1

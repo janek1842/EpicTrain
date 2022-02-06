@@ -1,0 +1,43 @@
+{% extends "views/base.html" %} {% block content %}
+<head>
+  <link
+    rel="stylesheet"
+    href="{{url_for('static',filename = 'style-sheets/trains.css')}}"
+  />
+</head>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12">
+      <h1 id="intro">
+        <img
+          src="{{url_for('static',filename = '/images/train-header.jpg')}}"
+        />
+        Lista dostępnych usług
+        <img
+          src="{{url_for('static',filename = '/images/train-header.jpg')}}"
+        />
+      </h1>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid trains-board">
+    {% for service in services %}
+        {% if loop.index  % 3 == 0 %} <div class="row"> {% endif %}
+            <div class="col-sm-12 col-md-6 col-lg-4" class="train-div" style="text-align: center">
+            <a href="{{ url_for('service_details', service_id=service["service_id"]) }}" target="_blank">
+            <img src="{{url_for('static',filename =
+          '/images/services/'+service["photo"])}}" class="train-image"
+          title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
+          eu nisi ac nisl porttitor posuere. Aliquam lobortis nulla at dui mattis,
+          nec vestibulum nibh varius. Morbi eget augue ut neque luctus imperdiet.
+          Cras at laoreet felis. ." id="service{{service["service_id"]}}">
+           <h2 class="train-name">{{ service["service_name"] }}</h2>
+           </a>
+       {% if loop.index  % 3 == 0 %} </div> {% endif %}
+       </div>
+    {% endfor %}
+</div>
+
+{% endblock content %}

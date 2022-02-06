@@ -1,0 +1,184 @@
+{% extends "views/base.html" %} {% block content %}
+<head>
+  <link
+    rel="stylesheet"
+    href="{{url_for('static',filename = 'style-sheets/course_search_engine.css')}}"
+  />
+  <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+</head>
+
+<section>
+  <h2 class="section-title">szczegóły podróży</h2>
+
+  <table>
+    <tr>
+      <th>data</th>
+      <th>odjazd</th>
+      <th>przyjazd</th>
+      <th>odległość</th>
+      <th>pociąg</th>
+      <th>stacja początkowa</th>
+      <th>stacja końcowa</th>
+      <th>czas</th>
+    </tr>
+    <tr>
+        <td>{{ course.date.split()[0] }}</td>
+      <td>{{ course.CzasOdjazdu }}</td>
+      <td>{{ course.CzasPrzyjazdu }}</td>
+      <td>{{ course.CalkowityDystans }}</td>
+      <td>{{ course.NazwaPociagu }}</td>
+      <td>{{ course.stacjaPoczatkowa }}</td>
+      <td>{{ course.stacjaKoncowa }}</td>
+      <td>{{ course.CzasPodrozy }}</td>
+    </tr>
+  </table>
+</section>
+
+<section>
+  <h2 style="margin: 50px auto -10px auto" class="section-title">
+    dowiedz się więcej o wybranych stacjach i pociągu
+  </h2>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 col-md-6 col-lg-4" class="border">
+        <div class="field">
+          <form action="{{ url_for('station_details',station_id=course.IdPocz) }}">
+            <input
+              type="submit"
+              value="Stacja Początkowa"
+              class="go"
+              style="width: 350px"
+            />
+          </form>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-6 col-lg-4 border" class="border">
+        <div class="field">
+          <form action="{{ url_for('station_details',station_id=course.IdKonc) }}">
+            <input
+              type="submit"
+              value="Stacja Końcowa"
+              class="go"
+              style="width: 350px"
+            />
+          </form>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-6 col-lg-4 border" class="border">
+        <div class="field">
+          <form action="{{ url_for('train_details',train_id=course.trainId) }}">
+            <input
+              type="submit"
+              value="Wybrany Pociąg"
+              class="go"
+              style="width: 350px"
+            />
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<form action="#" method="post">
+  <section>
+    <h2 style="margin: 35px auto 10px auto" class="section-title">
+      wybór dodatkowych usług
+    </h2>
+    {% for service,order in reqIDs_msgs_rcs %}
+    <input type="number" name="services"  min="0" max="10" value= {% if order == '' %}0{% else %} {{ order }} {% endif %} />
+
+    <label for="{{ service.service_name }}" class="service"
+      >{{ service.service_name }}</label>
+    <br />
+    {% endfor %}
+  </section>
+
+  <section>
+    <h2 style="margin: 35px auto 10px auto" class="section-title">
+      wybór standardu
+    </h2>
+
+    <div class="container" style="width: 95%">
+
+      <div class="row">
+        <div class="col-sm-12 col-md-6 col-lg-4" class="border">
+          <span class="standard">
+            <input type="radio" name="travel-standard" value="basic" {%  if course.std != "premium" and course.std != "vip" %} checked {% endif %} />
+            <label for="basic" style="color: grey">Podstawowy (wolne miejsca: {{ places["ECO"] }} )</label>
+          </span>
+        </div>
+        <div class="col-sm-12 col-md-6 col-lg-4 border" class="border">
+          <span class="standard">
+            <input type="radio" name="travel-standard" value="premium" {%  if course.std == "premium"%} checked {% endif %} />
+            <label for="premium" style="color: green">Premium (wolne miejsca: {{ places["PREMIUM"] }} )</label>
+          </span>
+        </div>
+        <div class="col-sm-12 col-md-6 col-lg-4 border" class="border">
+          <span class="standard">
+            <input type="radio" name="travel-standard" value="vip" {%  if course.std == "vip" %} checked {% endif %} />
+            <label for="vip" style="color: red">VIP (wolne miejsca: {{ places["VIP"] }})</label>
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+      <div class="field" style="margin: 15px auto 20px auto">
+          <input type="hidden" name="CzasOdjazdu" id="CzasOdjazdu" value= "{{ course.CzasOdjazdu }}" />
+          <input type="hidden" name="CzasPrzyjazdu" id="CzasPrzyjazdu" value="{{ course.CzasPrzyjazdu }}" />
+          <input type="hidden" name="CalkowityDystans" id="CalkowityDystans" value="{{ course.CalkowityDystans }}" />
+          <input type="hidden" name="NazwaPociagu" id="NazwaPociagu" value="{{ course.NazwaPociagu|string }}" />
+          <input type="hidden" name="stacjaPoczatkowa" id="stacjaPoczatkowa" value="{{ course.stacjaPoczatkowa }}" />
+          <input type="hidden" name="stacjaKoncowa" id="stacjaKoncowa" value="{{ course.stacjaKoncowa }}" />
+          <input type="hidden" name="CzasPodrozy" id="CzasPodrozy " value="{{ course.CzasPodrozy  }}" />
+          <input type="hidden" name="CourseId" id="CourseId" value="{{ course.CourseId }}" />
+          <input type="hidden" name="trainId" id="trainId" value="{{ course.trainId }}" />
+          <input type="hidden" name="IdPocz" id="IdPocz" value="{{ course.IdPocz  }}" />
+          <input type="hidden" name="IdKonc" id="IdKonc" value="{{ course.IdKonc }}" />
+          <input type="hidden" name="date" id="date" value="{{ course.date }}" />
+        <input type="hidden" name="std" id="std" value="basic"/>
+
+      <input
+        type="submit"
+        value="Aktualizuj cenę"
+        class="go"
+        id="refresh-price"
+      />
+
+    </div>
+    <div class="field" style="margin: 15px auto 20px auto">
+      <p>PODSUMOWANIE</p>
+        {{ price }}
+    </div>
+  </section>
+
+</form>
+    <section>
+    <div class="field" style="margin: 15px auto 20px auto">
+        <form id="order" action="{{ url_for('home') }}" method="post">
+
+       <input type="hidden" name="course_id" id="course_id" value="{{ course.CourseId }}"/>
+       <input type="hidden" name="train" id="train" value="{{ course.NazwaPociagu|string }}"/>
+             <input type="hidden" name="date" id="date" value="{{ course.date }}"/>
+       <input type="hidden" name="city1" id="city1" value="{{ course.stacjaPoczatkowa }}"/>
+             <input type="hidden" name="city2" id="city2" value="{{ course.stacjaKoncowa }}"/>
+        <input type="hidden" name="std" id="std" value="{{ course.std }}"/>
+        <input type="hidden" name="purchasedSer" id="purchasedSer" value="{{ purchasedSer }}"/>
+
+
+      <input
+        type="submit"
+        value="Zamawiam !"
+        class="go"
+        id="summary-button"
+      />
+        </form>
+    </div>
+  </section>
+{% endblock content %}
+
+
+

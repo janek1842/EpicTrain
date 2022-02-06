@@ -1,0 +1,60 @@
+{% extends "views/base.html" %} {% block content %}
+
+<div class="container" id="panel-box">
+  <div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-3" class="border">
+      <div class="field">
+        <p class="info info-panel">
+          Znajdź połączenie w odpowiadjącym Ci czasie i lokalizacji!
+        </p>
+        <form action="{{ url_for('courses') }}">
+          <input type="submit" value="Połączenia" class="go go-panel" />
+        </form>
+      </div>
+    </div>
+    <div class="col-sm-12 col-md-6 col-lg-3 border" class="border">
+      <div class="field">
+        <p class="info info-panel">
+          Zobacz jakimi pociągami dysponujemy i wybierz ten, który idealnie
+          odpowiada Twoim potrzebom!
+        </p>
+        <form action="{{ url_for('trains') }}">
+          <input type="submit" value="Pociągi" class="go go-panel" />
+        </form>
+      </div>
+    </div>
+    <div class="col-sm-12 col-md-6 col-lg-3 border" class="border">
+      <div class="field">
+        <p class="info info-panel">
+          Chcesz w trakcie podróży zjeść obiad lub potrzebujesz przewieźć ze
+          sobą rower? Żaden problem!
+        </p>
+        <form action="{{ url_for('services') }}">
+          <input type="submit" value="Usługi" class="go go-panel" />
+        </form>
+      </div>
+    </div>
+    <div class="col-sm-12 col-md-6 col-lg-3 border" class="border">
+      <div class="field">
+        <p class="info info-panel">
+          Baza wszystkich stacji, do których możesz dotrzeć podróżując naszymi
+          pociągami.
+        </p>
+        <form action="{{ url_for('stations') }}">
+          <input type="submit" value="Stacje" class="go go-panel" />
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12 col-lg-6" id="train">
+      <p>{{items}}</p>
+      <img src="{{url_for('static',filename = 'images/mustang.jpg')}}" />
+    </div>
+    <div class="col-md-12 col-lg-6" id="map">
+      <img src="{{url_for('static',filename = 'images/lady.jpg')}}" />
+    </div>
+  </div>
+</div>
+{% endblock content %}

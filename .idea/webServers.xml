@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="7f2ca1bf-1603-41a4-9011-529876b8e803" name="labagh">
+        <fileTransfer accessType="SFTP" host="labagh.pl" port="22" sshConfigId="059d9d4f-28dc-4efc-bd04-86646a81e070" sshConfig="s402833@labagh.pl:22:3306 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

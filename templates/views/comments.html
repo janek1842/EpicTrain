@@ -1,0 +1,85 @@
+<head>
+    <link
+      rel="stylesheet"
+      href="{{url_for('static',filename = 'style-sheets/comments.css')}}"
+    />
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+</head>
+
+<div id="box">
+    <div id="header">
+        <h1>Comments</h1>
+    </div>
+    {% for opinion in opinions %}
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+              <div class="row">
+                    <div class="rating_comment">
+                        {% for i in range(0,5) %}
+                            {% if i < opinion['rate'] %}
+                                <span><i class="fa fa-star fa-2x rating_star_comment"></i></span>
+                            {% else %}
+                                <span><i class="fa fa-star-o fa-2x rating_star_comment"></i></span>
+                            {% endif %}
+                        {% endfor %}
+                   </div>
+                  <h4>{{opinion['author']}}</h4>
+                  {% if opinion['author_id'] == current_user.user_id %}
+                      {% if page == "trains" %}
+                          <a class="btn btn-danger" href="{{ url_for('delete_train_opinion', train_id=train['id'], opinion_id=opinion['opinion_id']) }}">Delete</a>
+                          <a class="btn btn-info" href="{{ url_for('edit_train_opinion', train_id=train['id'], opinion_id=opinion['opinion_id']) }}">Edit</a>
+                      {% elif page == "services" %}
+                          <a class="btn btn-danger" href="{{ url_for('delete_service_opinion', service_id=service['id'], opinion_id=opinion['opinion_id']) }}">Delete</a>
+                          <a class="btn btn-info" href="{{ url_for('edit_service_opinion', service_id=service['id'], opinion_id=opinion['opinion_id']) }}">Edit</a>
+                      {% elif page == "stations" %}
+                          <a class="btn btn-danger" href="{{ url_for('delete_station_opinion', station_id=station['id'], opinion_id=opinion['opinion_id']) }}">Delete</a>
+                          <a class="btn btn-info" href="{{ url_for('edit_station_opinion', station_id=station['id'], opinion_id=opinion['opinion_id']) }}">Edit</a>
+                      {% endif %}
+    
+                  {% endif %}
+              </div>
+            {#<img src="{{ STATIC_PREFIX }}images/avatars/{{opinion['avatar']}}" alt="" class="rounded-circle" width="40" height="40">#}
+          </div>
+          <div class="panel-body">
+              <span>{{opinion['insert_time']}}</span> <br>
+              <p>{{opinion['text']}}</p>
+          </div>
+        </div>
+    {% endfor %}
+    
+    <div id="add-comment">
+        {% if page == "trains" %}
+            <form method="POST" action="{{ url_for('train_details', train_id=train['id']) }}">
+        {% elif page == "services" %}
+            <form method="POST" action="{{ url_for('service_details', service_id=service['id']) }}">
+        {% elif page == "stations" %}
+            <form method="POST" action="{{ url_for('station_details', station_id=station['id']) }}">
+        {% endif %}
+                {{ form.hidden_tag() }}
+
+
+                {{ form.opinion(id="opinion-input") }}
+
+                {% for error in form.opinion.errors %}
+                    <span>{{ error }}</span>
+                {% endfor %}
+
+                <input type="hidden" id="rate" name="rate" value="0">
+                <div class="rating">
+                    {{ form.rate.label }}
+                    <span><i class="fa fa-star-o fa-2x rating_star"></i></span>
+                    <span><i class="fa fa-star-o fa-2x rating_star"></i></span>
+                    <span><i class="fa fa-star-o fa-2x rating_star"></i></span>
+                    <span><i class="fa fa-star-o fa-2x rating_star"></i></span>
+                    <span><i class="fa fa-star-o fa-2x rating_star"></i></span>
+                </div>
+                {% for error in form.rate.errors %}
+                    <span>{{ error }}</span>
+                {% endfor %}
+
+                {{ form.submit(id="submit-btn") }}
+            </form>
+    </div>
+</div>
+
+<script src="{{ STATIC_PREFIX }}js/stars.js"></script>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+
+<html lang="pl">
+  <head>
+    <title>Dowiedz się więcej</title>
+    <meta charset="utf-8" />
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Loved+by+the+King&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    />
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{url_for('static',filename = 'style-sheets/main.css')}}"
+    />
+  </head>
+  <body>
+    <nav class="sticky">
+      <div class="container">
+        <div class="navbar-brand">
+          <a href="{{ url_for('home') }}" style="text-align: left"
+            >Epic Train</a
+          >
+        </div>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav" style="list-style: none">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Rezerwacje</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Konto</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <h1 id="intro">
+            <span id="epic-train"
+              ><a href="{{ url_for('home') }}">Epic Train</a></span
+            >
+            - najwyższy standard podróżowania
+          </h1>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-12" style="background-color: rgb(157, 255, 222)">
+          <h2 class="subheader">Działalność biura podróży</h2>
+          <p class="casual">
+            Swoje usługi świadczymy od grudnia 2021 roku i staramy się zapewnić jak najwyższy komfort naszym klientom, którzy bardzo chętnie korzystają
+              nie tylko z komfortowego przejazdu od miasta do miasta ale także z rozbudowanej bazy usług świadczonych na pokładzie naszych pociągów.
+              Wśród nich możemy wyróżnić pyszną turecką kawę czy orzeźwiającą herbatę, która smakuje najlepiej podawana z soczystą cytryną. Nasz personel pokładowy jest bardzo dobrze wyszkolony
+              i potrafi zadbać o Państwa komfort w czasie jazdy.
+              <br /><br />
+
+            Dzięki właściwie realizowanej strategii biznesowej rozwijamy swoje usługi w Polsce i zagranicą. Możemy pochwalić się wieloma nagrodami i certyfikatami
+              międzynarodowymi, które poświadczają o jakości świadczony przez nas usług. Realizujemy przewozy pasażerskie i towarowe, a także kursy specjalne
+              na zlecenie klientów rządowych i biznesowych. Nasza firma cieszy się międzynarodowym uznaniem i jest kojarzona z nieustannym rozwojem i nastawieniem na innnowacje. Wśród
+              naszych partnerów, którzy realizują z nami wieloletnią współpracę znajdują się uznane firmy technologiczne i duże korporacje z sektora bankowego.
+              <br /><br />
+
+            Jesteśmy przekonani, że nasza propozycja spełni Państwa najdrobniejsze wymagania i będziecie się Państwo cieszyć z każdej chwili spędzonej w pociągach Epic Train.
+          </p>
+        </div>
+        <br /><br />
+        <div class="col-12" style="background-color: rgb(298, 293, 298)">
+          <h2 class="subheader">O założycielach</h2>
+          <p class="casual" >
+            <center>
+            <img src="{{url_for('static',filename = 'images/man1.jpg')}}" width="300" height="250" />
+            </center>
+             <br /><br />
+
+            <p style="color:black;">Cornel Cherryl (ur. 1971 w Londynie) - doświadczony strateg i analityk biznesowy realizujący wiele projektów międzynaradowych, urodzony lider
+            i doświadczony manager.</p>
+
+             <br /><br />
+            <center>
+              <img src="{{url_for('static',filename = 'images/woman1.jpg')}}" width="300" height="250"/>
+                </center>
+             <br /><br />
+            <p style="color:black;">
+            Susan Ed (ur. 1977) - absolwentka prawa uniwersytetu w Kioto, studiowała również ekonomię, iberystykę oraz muzykologię. Doświadczona w branży kolejowej
+            poprzez udział w licznych stażach, projektach i konkursach. Prywatnie zaangażowana w ochronę środowiska i promocję kultury fizycznej</p>
+             <br /><br />
+             <br /><br />
+          </p>
+        </div>
+        <br /><br />
+        <div class="col-12" style="background-color: rgb(255, 206, 153)">
+          <h2 class="subheader">
+            Co oferujemy naszym klientom?
+          </h2>
+          <p class="casual">
+             <br /><br />
+
+            Nasza linie oferują przejazd w komfortowych warunkach wraz z kompleksową obsługą pasażerską na liniach krajowych łączących miasta
+              wojewódzkie w Polsce
+
+              <br /><br />
+              <img src="{{url_for('static',filename = 'images/miasta.gif')}}" />
+            <br /><br />
+
+            Wszystkie pociągi realizujące połącząnia na naszych liniach są wyposażone w klimatyzację, barek, toaletę i wiele innych udogodnień
+              zapewniających komfort i najwyższą jakość obsługi pasażera. To właśnie jego zadowolenie jest dla nas celem do spełnienia w najlepszej możliwej formie.
+              <br /><br />
+
+            Dobra jakość nie może obejść się bez rzetelnej informacji podpartej opiniami innych klientów, dlatego na naszej stronie nie tylko mogą państwo zarezerwować
+              kurs w danym standardzie wraz z pakietem usług dodatkowych ale także przeczytać oceny stacji, pociagów oraz usług, które oferujemy na naszym pokładzie. W każdej chwili moga państwo również zrezygnować z posiadanej rezerwacji
+              bez żadnych konsekwencji.
+          </p>
+        </div>
+        <br /><br />
+              <h2 class="subheader" >
+            <p style="color:#B29B35;">Życzymy Państwu miłej podróży ! <p>
+          </h2>
+      </div>
+
+
+    </div>
+  </body>
+</html>

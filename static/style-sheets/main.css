@@ -1,0 +1,158 @@
+body {
+  /* Background image downloaded from www.subtlepatterns.com */
+  background-image: url(../images/black_thread.png);
+  color: rgb(218, 196, 196);
+}
+
+#intro {
+  text-align: center;
+  font-family: "Loved by the King", cursive;
+  letter-spacing: 5px;
+  font-size: 80px;
+  margin: 20px 25px 25px 25px;
+  padding: 20px;
+}
+
+#panel-box {
+  width: 90%;
+}
+
+#epic-train {
+  color: rgb(43, 32, 204);
+  font-weight: bold;
+  font-size: 140%;
+  letter-spacing: 7px;
+  word-spacing: -30px;
+}
+
+#epic-train a {
+  color: inherit;
+  text-decoration: none;
+  transition-duration: 350ms;
+}
+
+#epic-train a:hover {
+  text-decoration: none;
+  color: rgb(21, 10, 163);
+}
+
+.field {
+  font-size: 25px;
+  margin: 10px;
+  padding: 15px;
+  font-family: "Dancing Script", cursive;
+  letter-spacing: 2px;
+  text-align: center;
+}
+
+input.go {
+  margin: 15px;
+  padding: 15px;
+  font-size: 35px;
+  background-color: gold;
+  color: rgb(14, 25, 172);
+  transition-duration: 350ms;
+}
+
+.go-panel {
+  width: 220px;
+}
+
+input.go:hover {
+  background-color: yellow;
+}
+
+.info {
+  text-align: center;
+  margin: 5px 10px 22px 10px;
+}
+
+.info-panel {
+  font-size: 17px;
+}
+
+.subheader {
+  text-align: center;
+  font-family: "Dancing Script", cursive;
+  letter-spacing: 3px;
+  font-size: 40px;
+  margin: 5px 20px 10px 20px;
+  padding: 20px;
+  color: rgb(90, 75, 75);
+}
+
+.subheader:first-child {
+  margin-top: 60px;
+}
+
+.casual {
+  margin: 8px;
+  padding: 8px;
+  font-family: "Rubik", sans-serif;
+  font-size: 17px;
+  color: darkblue;
+  text-align: center;
+}
+
+.sticky {
+  background-color: rgba(0, 151, 252, 0.795);
+  position: static;
+  top: 0;
+  width: 100%;
+}
+
+.navbar-brand {
+  color: white;
+  float: center;
+  font-size: 25px;
+}
+
+.navbar-brand a {
+  color: inherit;
+  text-decoration: none;
+  transition-duration: 250ms;
+}
+
+.navbar-brand a:hover {
+  color: rgb(7, 0, 102);
+  text-decoration: none;
+}
+
+#navbarNav {
+  float: right;
+}
+
+.nav-item {
+  margin-top: 15px;
+}
+
+.nav-link {
+  margin-top: 50px;
+  margin-right: 20px;
+  color: white;
+  font-size: 20px;
+  transition-duration: 250ms;
+}
+
+.nav-link:hover {
+  text-decoration: none;
+  color: rgb(7, 0, 102);
+}
+
+#train {
+  margin-top: 20px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+#map {
+  margin-top: 20px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+#avatar {
+  width: 42px;
+  height: 42px;
+  margin-top: 4px;
+}

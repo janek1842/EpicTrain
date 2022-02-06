@@ -1,0 +1,41 @@
+{% extends "views/base.html" %} {% block content %}
+
+<head>
+  <link rel="stylesheet" href="static/style-sheets/register.css" />
+</head>
+
+<h1>Rejestracja</h1>
+<form action="" method="post">
+  {{ form.hidden_tag() }}
+  <p>
+    {{ form.username.label }}<br />
+    {{ form.username(size=32, class='input-field') }}<br />
+    {% for error in form.username.errors %}
+    <span class="error">[{{ error }}]</span>
+    {% endfor %}
+  </p>
+  <p>
+    {{ form.email.label }}<br />
+    {{ form.email(size=64, class='input-field') }}<br />
+    {% for error in form.email.errors %}
+    <span class="error">[{{ error }}]</span>
+    {% endfor %}
+  </p>
+  <p>
+    {{ form.password.label }}<br />
+    {{ form.password(size=32, class='input-field') }}<br />
+    {% for error in form.password.errors %}
+    <span class="error">[{{ error }}]</span>
+    {% endfor %}
+  </p>
+  <p>
+    {{ form.confirm.label }}<br />
+    {{ form.confirm(size=32, class='input-field') }}<br />
+    {% for error in form.confirm.errors %}
+    <span style="color: red">[{{ error }}]</span>
+    {% endfor %}
+  </p>
+  <p>Masz już konto? <a href="{{ url_for('login') }}">Zaloguj się!</a></p>
+  <p>{{ form.submit(class='send-data') }}</p>
+</form>
+{% endblock content %}

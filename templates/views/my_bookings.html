@@ -1,0 +1,53 @@
+{% extends "views/base.html" %} 
+
+{% block content %}
+
+    <head>
+        <link
+        rel="stylesheet"
+        href="{{url_for('static',filename = 'style-sheets/bookings.css')}}"
+        />
+        <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    </head>
+
+    <div id="box">
+        <h1>Moje Rezerwacje</h1>
+
+        <div class="container">
+            {% for booking in bookings %}
+                <div class="row">
+                    <div class="col-sm-12 col-md-6 col-lg-4 column">
+                        <p>{{ booking.startStation }} - {{ booking.endStation }}</p>
+                        <p>{{ booking.date }}</p>
+                        <p>Czas odjazdu: {{ booking.departureTime }}</p>
+                        <p>Miejsce nr: {{ booking.seatNumber }}</p>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-4 column">
+                        <p>Zakupione usługi:</p>
+                        {% if booking.services|length == 0 %}
+                            <p>Brak</p>
+                        {% else %}
+                            {% for service in booking.services %}
+                                <p>{{ service }}</p>
+                            {% endfor %}
+                        {% endif %}
+
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-4 column">
+                        <p>Pociąg: {{ booking.trainName }}</p>
+                        <p>Cena: {{ booking.price }}</p>
+
+                         <form action="/my_bookings" method="POST" accept-charset="utf-8">
+                             <input type="hidden" name="id_to_delete" id="date" value="{{ booking.reservationId }}" />
+                             <input type="submit" name="is_changed" value="USUŃ REZERWACJE" class="button"
+                             />
+                         </form>
+
+                    </div>
+                </div>
+            {% endfor %}
+            
+        </div>
+    </div>
+
+{% endblock content %}

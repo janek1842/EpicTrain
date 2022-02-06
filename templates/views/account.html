@@ -1,0 +1,45 @@
+{% extends "views/base.html" %}
+{% block content %}
+    <head>
+        <link
+            rel="stylesheet"
+            href="{{url_for('static',filename = 'style-sheets/account.css')}}"
+        />
+        <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    </head>
+
+    <body>
+        <div id="box">
+            <h1>Account</h1>
+
+            <form action="" method="post" enctype="multipart/form-data">
+                {{ form.hidden_tag() }}
+                <p>
+                    {{ form.discount.label }}<br>
+                    <select id="discount" name="discount">
+                        <option value="0" {% if current_user.discount == 0 %} selected {% endif %}>Brak zniżki (0%)</option>
+                        <option value="37" {% if current_user.discount == 37 %} selected {% endif %} >Uczniowie (37%)</option>
+                        <option value="51" {% if current_user.discount == 51 %} selected {% endif %}>Studenci (51%)</option>
+                    </select><br>
+                </p>
+                <br>
+                <p>
+                    {{ form.description.label }}<br>
+                    <textarea id="description" name="description" style="width: 300px;height: 150px; color: black;">{{ current_user.description }}</textarea>
+                </p>
+                <br>
+                <p>
+                    <p>{{ form.avatar.label }}</p>
+                    <p>{{ form.avatar(id="avatar-input") }}</p>
+                    {% for error in form.avatar.errors %}
+                        <span style="color: red; text-align: center;">[{{ error }}]</span>
+                    {% endfor %}
+                </p>
+                <br>
+                <p style="color: black;">{{ form.submit()}}</p>
+            </form>
+            <button type="button" style='background-color: red' onclick="window.location.href='{{ url_for('delete_account') }}';">DELETE ACCOUNT</button>
+        </div>
+    </body>
+    
+{% endblock content %}

@@ -1,0 +1,36 @@
+{% extends "views/base.html" %} {% block content %}
+
+<head>
+  <link rel="stylesheet" href="static/style-sheets/register.css" />
+</head>
+
+<h1>Logowanie</h1>
+<form action="" method="post" novalidate>
+  {{ form.hidden_tag() }}
+  <p>
+    {{ form.username.label }}<br />
+    {{ form.username(size=32, class='input-field') }} {% for error in
+    form.username.errors %}
+    <span class="error">[{{ error }}]</span>
+    {% endfor %}
+  </p>
+  <p>
+    {{ form.password.label }}<br />
+    {{ form.password(size=32, class='input-field') }} {% for error in
+    form.password.errors %}
+    <span class="error">[{{ error }}]</span>
+    {% endfor %}
+  </p>
+  <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>
+  <p>
+    Nie masz jeszcze konta?
+    <a href="{{ url_for('register') }}">Zarejestruj się!</a>
+  </p>
+  <p class="send-data">{{ form.submit() }}</p>
+</form>
+
+    {% for msg in get_flashed_messages() %}
+      <h3 style="color: red">{{ msg }}</h3>
+    {% endfor %}
+
+{% endblock content %}

@@ -1,0 +1,37 @@
+{% extends "views/base.html" %}
+{% block content %}
+    <div class="container">
+        <center>
+
+        <h1>{{ station['name'] }}</h1>
+        <br>
+        <i>
+        <h3>{{ station['description'] }}</h3>
+        </i>
+
+        <br>
+        <h3>Ocena: {{ total_rate }} / 5.0 </h3>
+        <br>
+
+        <h4>Liczba peronów: {{ station['platform_number'] }}</h4>
+        <h4>Liczba torów: {{ station['track_number'] }}</h4>
+        </center>
+        <h4>Obecność kas biletowych:
+            {% if station['ticket_office'] == 1 %}
+            TAK
+            {% else %}
+            NIE
+            {% endif %}
+        </h4>
+{#        <h1>{{ station }}</h1>#}
+        <br>
+        <center>
+        <img src="{{ STATIC_PREFIX }}images/stations/{{station['photo']}}"/>
+        </center>
+    </div>
+    <hr>
+    {% with page="stations" %}
+        {% include "views/comments.html" %}
+    {% endwith %}
+
+{% endblock content %}

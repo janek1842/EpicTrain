@@ -1,0 +1,45 @@
+{% extends "views/base.html" %}
+{% block content %}
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <h1 id="intro">
+            <span id="epic-train"><a href="{{ url_for('index') }}">Epic Train</a></span> -
+            najwyższy standard podróżowania
+          </h1>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12 col-md-6 col-lg-4" class="border">
+          <div class="field">
+            <p class="info">Dowiedz się więcej o tym jak działamy!</p>
+            <form action="{{ url_for('read_more') }}">
+              <input type="submit" value="Informacje" class="go" />
+            </form>
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-6 col-lg-4 border" class="border">
+          <div class="field">
+            <p class="info">
+              Załóż konto i ruszaj z nami w świat epickich podróży!
+            </p>
+            <form action="{{ url_for('register') }}">
+              <input type="submit" value="Rejestracja" class="go" />
+            </form>
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-6 col-lg-4 border" class="border">
+          <div class="field">
+            <p class="info">Masz już konto? Zaloguj się!</p>
+            <form action="{{ url_for('login') }}">
+              <input type="submit" value="Logowanie" class="go" />
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock content %}

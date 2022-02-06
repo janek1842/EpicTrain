@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+
+<html lang="pl">
+  <head>
+    <title>Epic Train</title>
+    <meta charset="utf-8" />
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Loved+by+the+King&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    />
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+    <script src="https://use.fontawesome.com/8e9ff10a4e.js"></script>
+
+    <link
+      rel="stylesheet"
+      href="{{url_for('static',filename = 'style-sheets/main.css')}}"
+    />
+  </head>
+  <body>
+    <nav class="sticky">
+      <div class="container">
+        <div class="navbar-brand">
+            {% if current_user.is_authenticated %}
+                <a href="{{ url_for('home') }}">Epic Train</a>
+            {% else %}
+                <a href="{{ url_for('index') }}">Epic Train</a>
+            {% endif %}
+
+        </div>
+
+        <nav class="navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav" style="list-style: none">
+            {% if current_user.is_anonymous %}
+            <li class="nav-item active">
+              <a class="nav-link" href="{{ url_for('login') }}">Logowanie</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="{{ url_for('register') }}"
+                >Rejestracja</a
+              >
+            </li>
+            {% else %}
+            <li class="nav-item active">
+              <a class="nav-link" href="{{ url_for('my_bookings') }}">Rezerwacje</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="{{ url_for('account') }}">Konto</a>
+            </li>
+            {% if current_user.is_admin %}
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{ url_for('admin_panel') }}">Admin panel</a>
+                </li>
+            {% endif %}
+            <li class="nav-item active">
+              <a class="nav-link" href="{{ url_for('logout') }}">Wyloguj się</a>
+            </li>
+            {% endif %} {% if not current_user.is_anonymous %}
+            <img
+              src="{{ STATIC_PREFIX }}images/avatars/{{ current_user.avatar }}"
+              id="avatar"
+            />
+            {% endif %}
+          </ul>
+        </nav>
+      </div>
+    </nav>
+    {% block content %}{% endblock %}
+  </body>
+</html>

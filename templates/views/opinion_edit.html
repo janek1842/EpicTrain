@@ -1,0 +1,39 @@
+{% extends "views/base.html" %}
+{% block content %}
+    <center>
+    {% if page == 'trains' %}
+        <form method="POST" action="{{ url_for('edit_train_opinion', opinion_id=opinion['opinion_id'], train_id=train_id) }}">
+    {% elif page == 'services' %}
+        <form method="POST" action="{{ url_for('edit_service_opinion', opinion_id=opinion['opinion_id'], service_id=service_id) }}">
+    {% elif page == 'stations' %}
+        <form method="POST" action="{{ url_for('edit_station_opinion', opinion_id=opinion['opinion_id'], station_id=station_id) }}">
+    {% endif %}
+
+    {{ form.hidden_tag() }}
+
+    <br>
+        <textarea rows="20" cols="50" id="opinion" name="opinion">{{opinion['text']}}</textarea>
+    {% for error in form.opinion.errors %}
+        <span>{{ error }}</span>
+    {% endfor %}
+
+    <br>
+        <input type="hidden" id="rate" name="rate" value={{opinion['rate']}}>
+        <div class="rating">
+        {% for i in range(0,5) %}
+            {% if i < opinion['rate'] %}
+                <span><i class="fa fa-star fa-2x rating_star"></i></span>
+            {% else %}
+                <span><i class="fa fa-star-o fa-2x rating_star"></i></span>
+            {% endif %}
+        {% endfor %}
+       </div>
+    {% for error in form.rate.errors %}
+        <span>{{ error }}</span>
+    {% endfor %}
+    <br>
+    {{ form.submit() }}
+    </form>
+    </center>
+    <script src="{{ STATIC_PREFIX }}js/stars.js"></script>
+{% endblock content %}

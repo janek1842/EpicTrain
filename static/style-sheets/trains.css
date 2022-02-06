@@ -1,0 +1,42 @@
+body {
+  /* Background image downloaded from www.subtlepatterns.com */
+  background-image: url(../images/black_thread.png);
+  color: rgb(218, 196, 196);
+}
+
+#intro {
+  text-align: center;
+  font-family: "Loved by the King", cursive;
+  letter-spacing: 5px;
+  font-size: 80px;
+  margin: 20px 25px 100px 25px;
+  padding: 20px;
+  text-shadow: 1.5px 1.5px rgb(238, 234, 8);
+}
+
+.trains-board {
+  width: 90%;
+}
+
+.train-image {
+  margin: 20px 10px -5px 10px;
+  border-radius: 8%;
+  border-style: solid;
+  border-color: rgb(38, 38, 155);
+  border-width: 3px;
+  opacity: 0.8;
+  transition-duration: 250ms;
+  height: 300px;
+  width: 80%;
+}
+
+.train-image:hover {
+  opacity: 1;
+  border-color: gold;
+}
+
+.train-name {
+  margin-bottom: 50px;
+  font-weight: bold;
+  font-style: italic;
+}

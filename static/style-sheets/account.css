@@ -1,0 +1,19 @@
+#box {
+    display: block;
+    margin: 40px auto 40px auto;
+    width: 80%;
+    font-size: 150%;
+    text-align: center;
+}
+
+select {
+    color: black;
+}
+
+#avatar-input {
+    margin-left: auto;
+    margin-right: auto;
+    margin: 15px auto 15px auto;
+    text-align: center;
+    width: 280px;
+}

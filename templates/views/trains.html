@@ -1,0 +1,43 @@
+{% extends "views/base.html" %} {% block content %}
+<head>
+  <link
+    rel="stylesheet"
+    href="{{url_for('static',filename = 'style-sheets/trains.css')}}"
+  />
+</head>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12">
+      <h1 id="intro">
+        <img
+          src="{{url_for('static',filename = '/images/train-header.jpg')}}"
+        />
+        Lista dostępnych pociągów
+        <img
+          src="{{url_for('static',filename = '/images/train-header.jpg')}}"
+        />
+      </h1>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid trains-board">
+    {% for train in trains %}
+        {% if loop.index  % 3 == 0 %} <div class="row"> {% endif %}
+        <div class="col-sm-12 col-md-6 col-lg-4" class="train-div" style="text-align: center">
+            <a href="{{ url_for('train_details', train_id=train["train_id"]) }}" target="_blank">
+                <img src="{{url_for('static',filename =
+                '/images/trains/'+train["photo"])}}" class="train-image" title="Lorem
+                ipsum dolor sit amet, consectetur adipiscing elit. Praesent eu nisi ac
+                nisl porttitor posuere. Aliquam lobortis nulla at dui mattis, nec
+                vestibulum nibh varius. Morbi eget augue ut neque luctus imperdiet. Cras
+                at laoreet felis. ." id="train{{train["train_id"]}}">
+                <h2 class="train-name">{{ train["name"] }}</h2>
+            </a>
+        </div>
+        {% if loop.index  % 3 == 0 %} </div> {% endif %}
+    {% endfor %}
+</div>
+
+{% endblock content %}

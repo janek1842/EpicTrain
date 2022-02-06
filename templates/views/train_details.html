@@ -1,0 +1,23 @@
+{% extends "views/base.html" %}
+
+{% block content %}
+    <div class="container">
+        <center>
+        <h1>{{ train['name'] }}</h1><br>
+        <h3><i>{{ train['description'] }}</i></h3><br>
+        <h3>Ocena: {{ total_rate }} / 5.0 </h3>
+        <br>
+        <p>Liczba wagonów standardu podstawowego: {{ train['stdEco_wagons_number'] }}</p>
+        <p>Liczba wagonów standardu premium: {{ train['stdPre_wagons_number'] }}</p>
+        <p>Liczba wagonów standardu VIP: {{ train['stdVip_wagons_number'] }}</p>
+        <p>Szybkość: {{ train['speed'] }} km/h</p>
+            <br>
+        <img src="{{ STATIC_PREFIX }}images/trains/{{train['photo']}}"/>
+        </center>
+    </div>
+    <hr>
+    {% with page="trains" %}
+        {% include "views/comments.html" %}
+    {% endwith %}
+
+{% endblock content %}

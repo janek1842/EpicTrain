@@ -1,0 +1,101 @@
+{% extends "views/base.html" %} {% block content %}
+<head>
+  <link
+    rel="stylesheet"
+    href="{{url_for('static',filename = 'style-sheets/course_search_engine.css')}}"
+  />
+  <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+</head>
+
+<h2>Wyszukaj połączenie i kup bilet w najlepszej cenie!</h2>
+<form action="/courses" method="POST" class="travel-details">
+  <label for="start-city">Początek podróży:</label>
+  <select name="start-city" id="start-city" required>
+    <option value="">-</option>
+    {% for station in stations %}
+    <option value="{{station.name}}">{{ station.name }}</option>
+    {% endfor %}
+  </select>
+
+  <br />
+
+  <label for="end-city">Miasto docelowe:</label>
+  <select name="end-city" id="end-city" required>
+    <option value="">-</option>
+    {% for station in stations %}
+    <option value="{{station.name}}">{{ station.name }}</option>
+    {% endfor %}
+  </select>
+
+  <br />
+
+  <label for="start">Data:</label>
+  <input type="date" id="start" name="trip-start" max="2022-12-31" />
+
+  <br />
+
+  <input type="submit" value="Szukaj połączenia" />
+</form>
+
+<table>
+  {% if courses[0].CzasPodrozy != "FalseFlag" %}
+  <tr>
+    <th>odjazd</th>
+    <th>przyjazd</th>
+    <th>odległość </th>
+    <th>pociąg</th>
+    <th>stacja początkowa</th>
+    <th>stacja końcowa</th>
+    <th>czas</th>
+    <th>rezerwacja</th>
+  </tr>
+  {% endif %}
+
+  {% for course in courses %}
+      {% if course.CzasPodrozy != "FalseFlag" %}
+  <tr>
+    <td>{{ course.CzasOdjazdu }}</td>
+    <td>{{ course.CzasPrzyjazdu }}</td>
+    <td>{{ course.CalkowityDystans }}</td>
+    <td>{{ course.NazwaPociagu }}</td>
+    <td>{{ course.stacjaPoczatkowa }}</td>
+    <td>{{ course.stacjaKoncowa }}</td>
+    <td>{{ course.CzasPodrozy }}</td>
+    <td>
+      <form action="/booking" method="POST" accept-charset="utf-8">
+        <input type="hidden" name="CzasOdjazdu" id="CzasOdjazdu" value= "{{ course.CzasOdjazdu }}" />
+          <input type="hidden" name="CzasPrzyjazdu" id="CzasPrzyjazdu" value="{{ course.CzasPrzyjazdu }}" />
+          <input type="hidden" name="CalkowityDystans" id="CalkowityDystans" value="{{ course.CalkowityDystans }}" />
+          <input type="hidden" name="NazwaPociagu" id="NazwaPociagu" value="{{ course.NazwaPociagu|string }}" />
+          <input type="hidden" name="stacjaPoczatkowa" id="stacjaPoczatkowa" value="{{ course.stacjaPoczatkowa }}" />
+          <input type="hidden" name="stacjaKoncowa" id="stacjaKoncowa" value="{{ course.stacjaKoncowa }}" />
+          <input type="hidden" name="CzasPodrozy" id="CzasPodrozy " value="{{ course.CzasPodrozy  }}" />
+          <input type="hidden" name="CourseId" id="CourseId" value="{{ course.CourseId }}" />
+          <input type="hidden" name="trainId" id="trainId" value="{{ course.trainId }}" />
+          <input type="hidden" name="IdPocz" id="IdPocz" value="{{ course.IdPocz  }}" />
+          <input type="hidden" name="IdKonc" id="IdKonc" value="{{ course.IdKonc }}" />
+          <input type="hidden" name="date" id="date" value="{{ course.date }}" />
+          <input type="hidden" name="std" id="std" value="basic" />
+        <input type="submit" value="rezerwuj" />
+      </form>
+    </td>
+  </tr>
+      {% endif %}
+  {% endfor %}
+
+</table>
+
+<script>
+  $(document).ready(() => {
+    var today = new Date();
+    var year = today.getFullYear();
+    var month = today.getMonth() + 1;
+    month = month <= 9 ? "0" + month : month;
+    var day = today.getDay() + 2;
+    day = day <= 9 ? "0" + day : day;
+    var todayHTMLinput = year + "-" + month + "-" + day;
+    $("#start").attr("value", todayHTMLinput);
+    $("#start").attr("min", todayHTMLinput);
+  });
+</script>
+{% endblock content %}
